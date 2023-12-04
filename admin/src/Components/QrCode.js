@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import QRCode from 'react-qr-code';
 import { toPng } from 'html-to-image';
 
+
+
 const QrCode = () => {
     const [text, setText] = useState('');
     const qrCodeRef = useRef();
@@ -10,6 +12,7 @@ const QrCode = () => {
         const newText = e.target.value;
         setText(newText);
     };
+
 
 
     const downloadQRCode = async () => {
@@ -21,7 +24,7 @@ const QrCode = () => {
         }
     
         try {
-            const dataUrl = await toPng(qrCodeDiv, { scale: 2, quality: 1, format: 'png' });
+            const dataUrl = await toPng(qrCodeDiv, { scale: 4, quality: 1, format: 'png' });
 
 
     
@@ -58,13 +61,11 @@ const QrCode = () => {
         }
     };
     
-    
-
-
 
     return (
+
         <div className="flex items-center justify-center h-screen">
-            <div className="p-6 rounded-lg text-center" style={{ backgroundColor: '#5b88a5' }}>
+            <div className="p-4 rounded-lg text-center" style={{ backgroundColor: '#5b88a5' }}>
                 <h1 className="text-3xl mb-4">Generador de código QR</h1>
                 <div className="flex justify-center" ref={qrCodeRef}>
                     <div className="p-4 rounded-t-md rounded-b-md" style={{ backgroundColor: '#f4f4f2' }}>
@@ -90,13 +91,21 @@ const QrCode = () => {
                         
                     />
                 </div>
+
                 <button
                     className="btn btn-primary mt-4 py-2 px-2 rounded-md  bg-white font-bold hover:bg-black hover:text-white"
                     onClick={downloadQRCode}
                 >
                     Descargar QR
-                </button>
-            </div>
+                </button>                
+                <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500 text-lg py-3 hover:text-white">
+                <a href="https://twitter.com/10kevin100" target="_blank" rel="noopener noreferrer">
+                    @Kevin
+                </a>
+                </h2>
+
+            </div>                
+
         </div>
     );
 };
